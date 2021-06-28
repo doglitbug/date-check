@@ -17,7 +17,7 @@ const AddProduct = () => {
                                     <InputGroup>
                                         <InputGroup.Prepend>
                                             <InputGroup.Text>
-                                                <FcPaid />&nbsp;
+                                                <FcPaid />
                                             </InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control className="form-control" type="text" placeholder="Enter product name" />
@@ -29,7 +29,7 @@ const AddProduct = () => {
                                     <InputGroup>
                                         <InputGroup.Prepend>
                                             <InputGroup.Text>
-                                                <FcBarChart />&nbsp;
+                                                <FcBarChart />
                                             </InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control className="form-control" type="text" placeholder="Enter barcode" />
@@ -41,7 +41,7 @@ const AddProduct = () => {
                                     <InputGroup>
                                         <InputGroup.Prepend>
                                             <InputGroup.Text>
-                                                <FcViewDetails />&nbsp;
+                                                <FcViewDetails />
                                             </InputGroup.Text>
                                         </InputGroup.Prepend>
 
@@ -57,7 +57,7 @@ const AddProduct = () => {
                                 <Button variant="primary" type="submit">
                                     Submit
                                 </Button>
-                                &nbsp;
+                                
                                 <Button variant="primary" type="reset">
                                     Reset
                                 </Button>
