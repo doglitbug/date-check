@@ -1,4 +1,5 @@
-import { Form, Button, Accordion, Card } from "react-bootstrap";
+import { Form, Button, Accordion, Card, InputGroup } from "react-bootstrap";
+import { FcPaid, FcBarChart, FcViewDetails } from "react-icons/fc";
 
 const AddProduct = () => {
     return (
@@ -13,26 +14,50 @@ const AddProduct = () => {
                             <Form>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Product Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter product name" />
+                                    <InputGroup>
+                                        <InputGroup.Prepend>
+                                            <InputGroup.Text>
+                                                <FcPaid />&nbsp;
+                                            </InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                        <Form.Control className="form-control" type="text" placeholder="Enter product name" />
+                                    </InputGroup>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
                                     <Form.Label>Barcode</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter barcode" />
+                                    <InputGroup>
+                                        <InputGroup.Prepend>
+                                            <InputGroup.Text>
+                                                <FcBarChart />&nbsp;
+                                            </InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                        <Form.Control className="form-control" type="text" placeholder="Enter barcode" />
+                                    </InputGroup>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
                                     <Form.Label>Category</Form.Label>
-                                    <Form.Control as="select" disabled>
-                                        <option>Miscellaneous</option>
-                                        <option>Drinks</option>
-                                        <option>Canned goods</option>
-                                    </Form.Control>
+                                    <InputGroup>
+                                        <InputGroup.Prepend>
+                                            <InputGroup.Text>
+                                                <FcViewDetails />&nbsp;
+                                            </InputGroup.Text>
+                                        </InputGroup.Prepend>
 
+                                        <Form.Control as="select">
+                                            <option>Miscellaneous</option>
+                                            <option>Drinks</option>
+                                            <option>Canned goods</option>
+                                        </Form.Control>
+
+                                    </InputGroup>
                                 </Form.Group>
+
                                 <Button variant="primary" type="submit">
                                     Submit
                                 </Button>
+                                &nbsp;
                                 <Button variant="primary" type="reset">
                                     Reset
                                 </Button>
