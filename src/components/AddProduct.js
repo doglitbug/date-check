@@ -50,7 +50,7 @@ const AddProduct = (props) => {
                                                 return (
                                                     <option>{category.description}</option>
                                                 )
-                                          })}
+                                            })}
                                         </Form.Control>
 
                                     </InputGroup>
@@ -71,22 +71,5 @@ const AddProduct = (props) => {
         </div>
     )
 }
-/*
-function getCategories() {
-    fetch("/api/categories/")
-        .then(response => {
-            if (!response.ok) throw Error(response.statusText);
-            return response.json();
-        })
-        .then(json => buildList(json));
-};
-
-/*
-Build the user's list
-function buildList(data) {
-    console.log(data);
-}
-*/
-
 
 export default AddProduct;
