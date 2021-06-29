@@ -1,17 +1,25 @@
-import { Server } from "miragejs";
+import { Model, Server } from "miragejs";
 
 const Database = () => (new Server({
+  models: {
+    category: Model,
+  },
+
+  seeds(server){
+    server.schema.categories.create({description: "Miscellaneous"})
+    server.schema.categories.create({description: "Drinks"})
+    server.schema.categories.create({description: "Canned goods"})
+  },
+
   routes() {
     this.namespace = "api";
 
-    this.get("/categories/", () => {
-      return [
-        { description: "Miscellaneous" },
-        { description: "Drinks" },
-        { description: "Canned Goods" }
-      ];
+    this.get("/categories", (schema) => {
+      return schema.categories.all()
     });
-  }
+  },
+
+  
 }));
 
 export default Database;

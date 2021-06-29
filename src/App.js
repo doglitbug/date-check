@@ -9,9 +9,9 @@ function App() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const result = await fetch('/api/categories/')
+      const result = await fetch('/api/categories')
       const body = await result.json();
-      setCategories(body)
+      setCategories(body.categories)
     }
     fetchCategories();
   }, []);
