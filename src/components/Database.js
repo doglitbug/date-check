@@ -1,14 +1,15 @@
 import { Model, Server } from "miragejs";
 
+const Categories = ["Miscellaneous", "Drinks", "Canned Goods"];
+
 const Database = () => (new Server({
   models: {
     category: Model,
   },
 
-  seeds(server){
-    server.schema.categories.create({description: "Miscellaneous"})
-    server.schema.categories.create({description: "Drinks"})
-    server.schema.categories.create({description: "Canned goods"})
+  seeds(server) {
+    Categories.map(category =>
+      server.schema.categories.create({ description: category }))
   },
 
   routes() {
@@ -19,7 +20,7 @@ const Database = () => (new Server({
     });
   },
 
-  
+
 }));
 
 export default Database;
