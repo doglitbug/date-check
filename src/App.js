@@ -7,8 +7,13 @@ function App() {
     <div className="App container justify-content-center">
       <h1 className="display-1">
         <FcCalendar className="inline-block" />Date Check</h1>
-      <AddProduct />
+      <AddProduct categories='{
+        { description: "Miscellaneous" },
+        { description: "Drinks" },
+        { description: "Canned Goods" }
+      }'/>
       <Search />
+      <button id="fetch-btn">Fetch</button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { Form, Button, Accordion, Card, InputGroup } from "react-bootstrap";
 import { FcPaid, FcBarChart, FcViewDetails } from "react-icons/fc";
 
-const AddProduct = () => {
+const AddProduct = (props) => {
     return (
         <div>
             <Accordion>
@@ -46,9 +46,11 @@ const AddProduct = () => {
                                         </InputGroup.Prepend>
 
                                         <Form.Control as="select">
-                                            <option>Miscellaneous</option>
-                                            <option>Drinks</option>
-                                            <option>Canned goods</option>
+                                            {props.categories.map(category => {
+                                                return (
+                                                    <option>{category.description}</option>
+                                                )
+                                          })}
                                         </Form.Control>
 
                                     </InputGroup>
@@ -57,7 +59,7 @@ const AddProduct = () => {
                                 <Button variant="primary" type="submit">
                                     Submit
                                 </Button>
-                                
+
                                 <Button variant="primary" type="reset">
                                     Reset
                                 </Button>
@@ -69,5 +71,22 @@ const AddProduct = () => {
         </div>
     )
 }
+/*
+function getCategories() {
+    fetch("/api/categories/")
+        .then(response => {
+            if (!response.ok) throw Error(response.statusText);
+            return response.json();
+        })
+        .then(json => buildList(json));
+};
+
+/*
+Build the user's list
+function buildList(data) {
+    console.log(data);
+}
+*/
+
 
 export default AddProduct;
