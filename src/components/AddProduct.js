@@ -46,11 +46,9 @@ const AddProduct = (props) => {
                                         </InputGroup.Prepend>
 
                                         <Form.Control as="select">
-                                            {props.categories.map(category => {
-                                                return (
-                                                    <option>{category.description}</option>
-                                                )
-                                            })}
+                                            {props.categories.map(category => 
+                                                <option key={category.id}>{category.description}</option>
+                                            )}
                                         </Form.Control>
 
                                     </InputGroup>
