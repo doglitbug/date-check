@@ -8,8 +8,8 @@ const Database = () => (new Server({
   },
 
   seeds(server) {
-    Categories.map(category =>
-      server.schema.categories.create({ description: category }))
+    Categories.map((category, index) =>
+      server.schema.categories.create({ id: index, description: category }))
   },
 
   routes() {

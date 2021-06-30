@@ -47,7 +47,7 @@ const AddProduct = (props) => {
 
                                         <Form.Control as="select">
                                             {props.categories.map(category => 
-                                                <option key={category.id}>{category.description}</option>
+                                                <option value={category.id} key={category.id}>{category.description}</option>
                                             )}
                                         </Form.Control>
 
