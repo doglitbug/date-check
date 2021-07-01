@@ -10,7 +10,7 @@ const DropDownMenu = () => {
             <Dropdown.Item href="#/action-3">Category<FcCheckmark /></Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item href="#/action-4">Asc<FcCheckmark /></Dropdown.Item>
-            <Dropdown.Item href="#/action-5">Desc<FcCheckmark /></Dropdown.Item>
+            <Dropdown.Item href="#/action-5">Desc<FcCheckmark align="end"/></Dropdown.Item>
         </DropdownButton>
     )
 }
