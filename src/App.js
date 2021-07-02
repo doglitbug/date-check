@@ -7,9 +7,18 @@ import ProductInfo from "./components/ProductInfo";
 
 function App() {
 
-  const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
+  let [categories, setCategories] = useState([]);
+  let [products, setProducts] = useState([]);
+  let [query, setQuery] = useState("");
 
+  const filteredProducts = products.filter(
+    product => {
+      return (
+        product.id.includes(query) ||
+        product.description.toLowerCase().includes(query.toLowerCase())
+      )
+    }
+  )
   useEffect(() => {
     const fetchCategories = async () => {
       const result = await fetch('/api/categories')
@@ -32,8 +41,9 @@ function App() {
     <div className="App container justify-content-center">
       <h1 className="display-1"><FcCalendar className="inline-block" />Date Check</h1>
       <AddProduct categories={categories} />
-      <Search />
-      {products.map(product => (
+      <Search query={query}
+        onQueryChange={myQuery => setQuery(myQuery)} />
+      {filteredProducts.map(product => (
         <ProductInfo categories={categories} product={product} />
       ))}
 
