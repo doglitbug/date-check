@@ -44,7 +44,7 @@ function App() {
       <Search query={query}
         onQueryChange={myQuery => setQuery(myQuery)} />
       {filteredProducts.map(product => (
-        <ProductInfo categories={categories} product={product} />
+        <ProductInfo product={product} />
       ))}
 
     </div>

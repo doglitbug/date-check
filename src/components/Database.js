@@ -1,10 +1,11 @@
-import { Model, Server } from "miragejs";
+import { belongsTo, Model, Server, RestSerializer } from "miragejs";
 
-const Categories = ["Miscellaneous",
+const CategoryData = [
+  "Miscellaneous",
   "Drinks",
   "Canned Goods"];
 
-const Products = [
+const ProductData = [
   ["Chocolate", "White flour", "Low fat cheese"],
   ["Raspberry milk", "Chocolate milk", "Energy drink"],
   ["Peaches", "Spagetti", "Baked Beans", "SPAM"]
@@ -13,24 +14,23 @@ const Products = [
 const Database = () => (new Server({
   models: {
     category: Model,
-    product: Model,
+    product: Model.extend({
+      category: belongsTo(),
+    }),
   },
 
   seeds(server) {
     //Categories
-    Categories.map((category, id) =>
-      server.schema.categories.create({ id: id, description: category }))
+    CategoryData.map((category) =>
+      server.schema.categories.create({ description: category }))
 
     //Products
-    var productID = 0;
-    Products.forEach((productGroups, categoryID) => {
-      productGroups.forEach(product => {
+    ProductData.forEach((productGroups, categoryID) => {
+      productGroups.forEach(productName => {
         server.schema.products.create({
-          id: productID,
-          categoryID: categoryID,
-          description: product
+          categoryId: categoryID + 1,
+          description: productName
         });
-        productID++;
       })
     });
   },
@@ -48,7 +48,13 @@ const Database = () => (new Server({
     });
   },
 
-
+  serializers: {
+    application: RestSerializer,
+    product: RestSerializer.extend({
+      include: ['category'],
+      embed: true
+    })
+  }
 }));
 
 export default Database;
