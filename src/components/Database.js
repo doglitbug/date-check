@@ -1,4 +1,4 @@
-import { belongsTo, Model, Server, RestSerializer } from "miragejs";
+import { belongsTo, Model, Server, RestSerializer, hasMany } from "miragejs";
 
 const CategoryData = [
   "Miscellaneous",
@@ -16,7 +16,9 @@ const Database = () => (new Server({
     category: Model,
     product: Model.extend({
       category: belongsTo(),
+      expiry: hasMany(),
     }),
+    expiry: Model
   },
 
   seeds(server) {
@@ -29,10 +31,27 @@ const Database = () => (new Server({
       productGroups.forEach(productName => {
         server.schema.products.create({
           categoryId: categoryID + 1,
-          description: productName
+          description: productName,
         });
       })
     });
+
+    //Dates
+
+    var today = new Date();
+    var newDay = new Date();
+
+    //Loop through all products
+    for (var i = 1; i <= server.schema.products.all().length; i++) {
+      //Add 0-3 dates
+      var datesToAdd = Math.random() * 3;
+      for (var j = 0; j < datesToAdd; j++) {
+        //Get a random date from now to 2 weeks away
+        newDay.setDate(today.getDate() + Math.random() * 14);
+        //Add to product
+        server.schema.products.find(i).createExpiry({ date: newDay.toISOString().slice(0, 10) });
+      }
+    }
   },
 
   routes() {
@@ -51,7 +70,7 @@ const Database = () => (new Server({
   serializers: {
     application: RestSerializer,
     product: RestSerializer.extend({
-      include: ['category'],
+      include: ['category', 'expiry'],
       embed: true
     })
   }
