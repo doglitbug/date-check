@@ -1,13 +1,19 @@
-import { FcEmptyTrash } from "react-icons/fc";
-import { Button } from "react-bootstrap";
+import { Accordion, Card } from "react-bootstrap";
 
 const ProductInfo = ({ product }) => {
     return (
-        < div>
-            <h4><Button variant="outline-danger"><FcEmptyTrash /></Button>{product.description}</h4>
-            <h6>Category: {product.category.description}</h6>
-            <hr />
-        </div >
+        <Card>
+            <Card.Header>
+                <Accordion.Toggle as={Card.Header} eventKey={product.id}>
+                    {product.description}
+                </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey={product.id}>
+                <Card.Body>
+                    Category: {product.category.description}
+                </Card.Body>
+            </Accordion.Collapse>
+        </Card >
     )
 }
 

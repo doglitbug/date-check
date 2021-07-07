@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FcCalendar } from "react-icons/fc";
+import { Accordion } from 'react-bootstrap';
 
 import Search from "./components/Search";
 import AddProduct from "./components/AddProduct";
@@ -40,13 +41,18 @@ function App() {
   return (
     <div className="App container justify-content-center">
       <h1 className="display-1"><FcCalendar className="inline-block" />Date Check</h1>
-      <AddProduct categories={categories} />
-      <Search query={query}
-        onQueryChange={myQuery => setQuery(myQuery)} />
-      {filteredProducts.map(product => (
-        <ProductInfo product={product} />
-      ))}
+      <Accordion>
 
+        <Search query={query}
+          onQueryChange={myQuery => setQuery(myQuery)} />
+
+        <AddProduct categories={categories} />
+
+        {filteredProducts.map(product => (
+          <ProductInfo product={product} />
+        ))}
+
+      </Accordion>
     </div>
   );
 }
