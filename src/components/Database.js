@@ -43,14 +43,26 @@ const Database = () => (new Server({
 
     //Loop through all products
     for (var i = 1; i <= server.schema.products.all().length; i++) {
-      //Add 0-5 dates
-      var datesToAdd = Math.random() * 5 - 1;
-      for (var j = 0; j < datesToAdd; j++) {
+      //Add 0-5 dates, minus 1 for more empty products
+      var numberDatesToAdd = Math.random() * 5 - 1;
+      var datesToAdd = [];
+
+      //Generate an array of dates to add, with no duplicates
+      for (var j = 0; j < numberDatesToAdd; j++) {
         //Get a random date from now to 2 weeks away
         newDay.setDate(today.getDate() + Math.random() * 14);
-        //Add to product
-        server.schema.products.find(i).createExpiry({ date: newDay.toISOString().slice(0, 10) });
+        //Format nicely
+        var dateText = newDay.toISOString().slice(0, 10);
+        //Check we dont already have this date
+        if (!datesToAdd.includes(dateText)) {
+          datesToAdd.push(dateText);
+        }
       }
+
+      //Add dates to product
+      datesToAdd.forEach(date => {
+        server.schema.products.find(i).createExpiry({ date: date });
+      });
     }
   },
 
