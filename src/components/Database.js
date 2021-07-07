@@ -43,8 +43,8 @@ const Database = () => (new Server({
 
     //Loop through all products
     for (var i = 1; i <= server.schema.products.all().length; i++) {
-      //Add 0-3 dates
-      var datesToAdd = Math.random() * 3;
+      //Add 0-5 dates
+      var datesToAdd = Math.random() * 5 - 1;
       for (var j = 0; j < datesToAdd; j++) {
         //Get a random date from now to 2 weeks away
         newDay.setDate(today.getDate() + Math.random() * 14);
