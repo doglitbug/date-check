@@ -90,9 +90,8 @@ const Database = () => (new Server({
       return schema.products.find(productId).expiry.create({attrs})
     });
 
-    this.delete("/products/:productId/expiry/:expiryId",(schema, request) => {
-      //Do we care about the product at all?
-      return schema.expiry.find(request.params.expiryId).delete();
+    this.delete("/expiry/:id",(schema, request) => {
+      return schema.expiries.find(request.params.id).destroy();
     });
   },
 

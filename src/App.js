@@ -22,7 +22,7 @@ function App() {
   )
 
 
-//#region API calls
+  //#region API calls
   useEffect(() => {
     const fetchCategories = async () => {
       const result = await fetch('/api/categories')
@@ -40,14 +40,23 @@ function App() {
     }
     fetchProducts();
   }, []);
-//#endregion
+  //#endregion
 
-//#region Data functions
-function onDeleteExpiry(productId, expiryId){
-  console.log("Deleting: "+expiryId+" from "+productId);
+  //#region Data functions
+  function onDeleteExpiry(productId, expiryId) {
+    console.log("Deleting: " + expiryId + " from " + productId);
+    
+      const deleteExpiry = async () => {
+        const result = await fetch('api/expiry/'+expiryId, { method: 'DELETE' });
+        //const body = await result.json();
+        //console.log(body)
+        //TODO remove item from products and DOM
+        
+      }
 
-}
-//#endregion
+      deleteExpiry(); 
+  }
+  //#endregion
 
   return (
     <div className="App container justify-content-center">
