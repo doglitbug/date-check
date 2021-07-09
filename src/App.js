@@ -20,6 +20,9 @@ function App() {
       )
     }
   )
+
+
+//#region API calls
   useEffect(() => {
     const fetchCategories = async () => {
       const result = await fetch('/api/categories')
@@ -37,6 +40,14 @@ function App() {
     }
     fetchProducts();
   }, []);
+//#endregion
+
+//#region Data functions
+function onDeleteExpiry(productId, expiryId){
+  console.log("Deleting: "+expiryId+" from "+productId);
+
+}
+//#endregion
 
   return (
     <div className="App container justify-content-center">
@@ -49,7 +60,11 @@ function App() {
         <AddProduct categories={categories} />
 
         {filteredProducts.map(product => (
-          <ProductInfo product={product} />
+          <ProductInfo
+            key={product.id}
+            product={product}
+            onDeleteExpiry={onDeleteExpiry}
+          />
         ))}
 
       </Accordion>

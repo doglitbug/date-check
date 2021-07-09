@@ -60,6 +60,7 @@ const Database = () => (new Server({
       }
 
       //Add dates to product
+      // eslint-disable-next-line
       datesToAdd.forEach(date => {
         server.schema.products.find(i).createExpiry({ date: date });
       });
@@ -76,6 +77,22 @@ const Database = () => (new Server({
     //Products
     this.get("/products", (schema) => {
       return schema.products.all()
+    });
+
+    //Expiry
+    this.post("/products/:productId/expiry", (schema, request) => {
+      //TODO Check if product exists, 404 if not?
+      let productId = request.params.productId;
+
+      //Get data from body
+      let attrs = JSON.parse(request.requestBody)
+      //TODO Test this is correct!
+      return schema.products.find(productId).expiry.create({attrs})
+    });
+
+    this.delete("/products/:productId/expiry/:expiryId",(schema, request) => {
+      //Do we care about the product at all?
+      return schema.expiry.find(request.params.expiryId).delete();
     });
   },
 

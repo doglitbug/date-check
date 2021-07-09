@@ -25,3 +25,12 @@ code {
   content: " ";
   white-space: pre;
 }
+
+.list {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.list>li {
+  padding: 5px;
+}
