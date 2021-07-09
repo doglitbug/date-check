@@ -45,16 +45,22 @@ function App() {
   //#region Data functions
   function onDeleteExpiry(productId, expiryId) {
     console.log("Deleting: " + expiryId + " from " + productId);
-    
-      const deleteExpiry = async () => {
-        const result = await fetch('api/expiry/'+expiryId, { method: 'DELETE' });
-        //const body = await result.json();
-        //console.log(body)
-        //TODO remove item from products and DOM
-        
-      }
 
-      deleteExpiry(); 
+    const deleteExpiry = async () => {
+      const result = await fetch('api/expiry/' + expiryId, { method: 'DELETE' });
+      //const body = await result.json();
+      //TODO check result for error in deleting etc?
+
+      //Split product to edit off
+      let product = products.filter(item => item.id === productId)
+      
+      //Remove date from product
+      product[0].expiry = product[0].expiry.filter(item => item.id !== expiryId)
+
+      setProducts([...products]);
+    }
+
+    deleteExpiry();
   }
   //#endregion
 
