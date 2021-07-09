@@ -44,19 +44,15 @@ function App() {
 
   //#region Data functions
   function onDeleteExpiry(productId, expiryId) {
-    console.log("Deleting: " + expiryId + " from " + productId);
-
     const deleteExpiry = async () => {
       const result = await fetch('api/expiry/' + expiryId, { method: 'DELETE' });
-      //const body = await result.json();
-      //TODO check result for error in deleting etc?
-
       //Split product to edit off
       let product = products.filter(item => item.id === productId)
       
-      //Remove date from product
+      //Remove date from product, this will update the original object as it is done by reference
       product[0].expiry = product[0].expiry.filter(item => item.id !== expiryId)
 
+      //Trick here is to use spread operator to trigger setState to update state and thus DOM
       setProducts([...products]);
     }
 
