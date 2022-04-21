@@ -1,5 +1,5 @@
 # date-check
-Manage product best before dates
+Manage product best before dates written in React
 
 # To run
 npm install
